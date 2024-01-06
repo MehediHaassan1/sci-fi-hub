@@ -1,7 +1,7 @@
 import React from "react";
 import { FaRegBookmark, FaBookmark } from "react-icons/fa";
 
-const Blog = ({ blog, handleBookmarkAdd, bookmarkAdd, handleRead }) => {
+const Blog = ({ blog, handleBookmarkAdd, handleRead }) => {
     const {
         blogThumbnail,
         authorImages,
@@ -32,9 +32,7 @@ const Blog = ({ blog, handleBookmarkAdd, bookmarkAdd, handleRead }) => {
                         className="text-[#355834] cursor-pointer"
                         onClick={() => handleBookmarkAdd(blog)}
                     >
-                        {/* {bookmarkAdd ? <FaBookmark /> : */}{" "}
                         <FaRegBookmark />
-                        {/* } */}
                     </span>
                 </div>
             </div>

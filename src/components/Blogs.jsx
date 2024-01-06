@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Blog from "./Blog";
 import toast, { Toaster } from "react-hot-toast";
+import { addToDbReadTime, getReadTimeValue } from "../utilities/fakeDb";
 
 const Blogs = () => {
     const [blogs, setBlogs] = useState([]);
@@ -30,7 +31,18 @@ const Blogs = () => {
     const handleRead = (blog) => {
         const newTime = readTime + blog.readTime;
         setReadTime(newTime);
+        addToDbReadTime(newTime);
     };
+
+    useEffect(() => {
+        const getTime = getReadTimeValue();
+        const time = getTime?.time;
+        if (!time) {
+            setReadTime(0);
+        } else {
+            setReadTime(time);
+        }
+    }, []);
 
     return (
         <div className="grid grid-cols-5 gap-8 mt-5">
@@ -39,7 +51,6 @@ const Blogs = () => {
                     <Blog
                         key={blog._id}
                         blog={blog}
-                        // bookmarkAdd={bookmarkAdd}
                         handleBookmarkAdd={handleBookmarkAdd}
                         handleRead={handleRead}
                     ></Blog>
