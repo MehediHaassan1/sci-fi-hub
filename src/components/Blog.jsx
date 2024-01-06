@@ -30,16 +30,19 @@ const Blog = ({ blog, handleBookmarkAdd, bookmarkAdd, handleRead }) => {
                     </p>
                     <span
                         className="text-[#355834] cursor-pointer"
-                        onClick={handleBookmarkAdd}
+                        onClick={() => handleBookmarkAdd(blog)}
                     >
-                        {/* {bookmarkAdd ? <FaBookmark /> : */} <FaRegBookmark />{/* } */}
+                        {/* {bookmarkAdd ? <FaBookmark /> : */}{" "}
+                        <FaRegBookmark />
+                        {/* } */}
                     </span>
                 </div>
             </div>
             <h3 className="text-3xl my-5 font-medium">{blogTitle}</h3>
-            <p 
-            onClick={()=>handleRead(blog)}
-            className="text-xl inline-block text-[#355834] hover:underline font-bold cursor-pointer">
+            <p
+                onClick={() => handleRead(blog)}
+                className="text-xl inline-block text-[#355834] hover:underline font-bold cursor-pointer"
+            >
                 Mark as read
             </p>
         </div>

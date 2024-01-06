@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Blog from "./Blog";
+import toast, { Toaster } from "react-hot-toast";
 
 const Blogs = () => {
     const [blogs, setBlogs] = useState([]);
@@ -9,9 +10,20 @@ const Blogs = () => {
             .then((data) => setBlogs(data));
     }, []);
 
-    // const [bookmarkAdd, setBookmarkAdd] = useState(false);
-    const handleBookmarkAdd = () => {
-
+    const [bookmarkAdd, setBookmarkAdd] = useState([]);
+    const handleBookmarkAdd = (blog) => {
+        if (bookmarkAdd.indexOf(blog.blogTitle) > -1) {
+            toast("Already bookmarked", {
+                icon: "ℹ️",
+                style: { background: "#355834  ", color: "#fff" },
+            });
+        } else {
+            const newItemAdded = [...bookmarkAdd, blog.blogTitle];
+            setBookmarkAdd(newItemAdded);
+            toast.success("Bookmark added", {
+                position: "top-center",
+            });
+        }
     };
 
     const [readTime, setReadTime] = useState(0);
@@ -27,7 +39,7 @@ const Blogs = () => {
                     <Blog
                         key={blog._id}
                         blog={blog}
-                        bookmarkAdd={bookmarkAdd}
+                        // bookmarkAdd={bookmarkAdd}
                         handleBookmarkAdd={handleBookmarkAdd}
                         handleRead={handleRead}
                     ></Blog>
@@ -38,7 +50,17 @@ const Blogs = () => {
                     Spent time on read : {readTime} min
                 </div>
                 <div className="bg-[#c0ffc0] h-full rounded-lg text-black pl-5 pt-5">
-                    <h3 className="text-3xl font-semibold mb-5">Bookmarked Blogs : 05</h3>
+                    <h3 className="text-3xl font-semibold mb-5">
+                        Bookmarked Blogs : {bookmarkAdd.length}
+                        <div>
+                            {bookmarkAdd.map((item, index) => (
+                                <p className="text-lg my-5 mr-5" key={index}>
+                                    {index + 1}. {item}
+                                </p>
+                            ))}
+                        </div>
+                    </h3>
+                    <Toaster></Toaster>
                 </div>
             </div>
         </div>
