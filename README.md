@@ -1,8 +1,17 @@
-# React + Vite
+# Sci-Fi Hub
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## [Live Link](https://sci-fi-hub-1.netlify.app/)
 
-Currently, two official plugins are available:
+## Technologies Used
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+-   **Programming Language:** JavaScript
+-   **Frontend:** ReactJS
+-   **CSS framework:** Tailwind CSS
+-   **Version Control:** Git
+-   **Package Management:** npm
+
+## Features
+
+-   Feature 1: Clicking the "Mark as read" link, the time of reading article is added on the right side.
+-   Feature 2: Clicking the bookmark icon, the title of the blog post will added on the right side.
+-   Feature 3: The whole progress will store in the local storage.
