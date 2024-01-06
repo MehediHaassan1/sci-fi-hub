@@ -1,7 +1,12 @@
 import React, { useEffect, useState } from "react";
 import Blog from "./Blog";
 import toast, { Toaster } from "react-hot-toast";
-import { addToDbReadTime, getReadTimeValue } from "../utilities/fakeDb";
+import {
+    addTitleToDb,
+    addToDbReadTime,
+    getReadTimeValue,
+    getTitleFromDb,
+} from "../utilities/fakeDb";
 
 const Blogs = () => {
     const [blogs, setBlogs] = useState([]);
@@ -21,11 +26,22 @@ const Blogs = () => {
         } else {
             const newItemAdded = [...bookmarkAdd, blog.blogTitle];
             setBookmarkAdd(newItemAdded);
+            addTitleToDb(blog._id, blog.blogTitle);
             toast.success("Bookmark added", {
                 position: "top-center",
             });
         }
     };
+
+    useEffect(() => {
+        const getBookmarked = getTitleFromDb();
+        const titleArray = [];
+        for (const id in getBookmarked) {
+            const getTitle = getBookmarked[id];
+            titleArray.push(getTitle);
+        }
+        setBookmarkAdd(titleArray);
+    }, []);
 
     const [readTime, setReadTime] = useState(0);
     const handleRead = (blog) => {

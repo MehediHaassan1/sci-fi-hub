@@ -10,4 +10,21 @@ const getReadTimeValue = () => {
     return getTime;
 };
 
-export { addToDbReadTime, getReadTimeValue };
+const addTitleToDb = (id, title) => {
+    const existingDataString = localStorage.getItem("bookmarked");
+    const existingData = existingDataString
+        ? JSON.parse(existingDataString)
+        : {};
+
+    existingData[id] = title;
+
+    localStorage.setItem("bookmarked", JSON.stringify(existingData));
+};
+
+const getTitleFromDb = () => {
+    const bookmarkdItem = localStorage.getItem("bookmarked");
+    const bookmarked = JSON.parse(bookmarkdItem);
+    return bookmarked;
+};
+
+export { addToDbReadTime, getReadTimeValue, addTitleToDb, getTitleFromDb };
