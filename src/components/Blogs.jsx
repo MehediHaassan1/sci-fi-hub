@@ -9,17 +9,35 @@ const Blogs = () => {
             .then((data) => setBlogs(data));
     }, []);
 
+    const [bookmarkAdd, setBookmarkAdd] = useState(false);
+    const handleBookmarkAdd = () => {
+        setBookmarkAdd(!bookmarkAdd);
+    };
+
+    const [readTime, setReadTime] = useState(0);
+    const handleRead = (blog) => {
+        const newTime = readTime + blog.readTime;
+        setReadTime(newTime);
+    };
+
     return (
         <div className="grid grid-cols-5 gap-8 mt-5">
             <div className="col-span-3  ml-5">
                 {blogs.map((blog) => (
-                    <Blog key={blog._id} blog={blog}></Blog>
+                    <Blog
+                        key={blog._id}
+                        blog={blog}
+                        bookmarkAdd={bookmarkAdd}
+                        handleBookmarkAdd={handleBookmarkAdd}
+                        handleRead={handleRead}
+                    ></Blog>
                 ))}
             </div>
-            <div className="col-span-2 bg-red-900">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                Tenetur perspiciatis quae cum ut dolore ex iure, suscipit quis
-                odio. Quam.
+            <div className="col-span-2 flex flex-col gap-5">
+                <div className="border border-[#355834] rounded-lg p-4 text-xl text-center text-[#355834] font-bold">
+                    Spent time on read : {readTime} min
+                </div>
+                <div>heellloo world</div>
             </div>
         </div>
     );
